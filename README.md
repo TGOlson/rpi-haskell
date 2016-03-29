@@ -1,75 +1,39 @@
-Steps...
+# rpi-haskell
 
-# Maybe need to run this first..
+Haskell installation on top of `rpi-raspbian` base image.
+
+#### Versions
+
 ```
-docker run --rm --privileged multiarch/qemu-user-static:register
+$ ghc --version
+The Glorious Glasgow Haskell Compilation System, version 7.10.3
 ```
 
-$ ghc version 7.10.2
+```
+$ cabal --version
 cabal-install version 1.22.6.0
-using version 1.22.4.0 of the Cabal library
-
-# TODO:
-```
-/scripts
-  install-ghc.sh (curl, tar, configure, make install, rm rm)
-  install-stack.sh (git, cabal install, rm rm)
+using version 1.22.5.0 of the Cabal library
 ```
 
-
-# run raspberry with a fun little directory mounted...
 ```
-docker run -v `pwd`:/work -it --rm resin/rpi-raspbian
-```
-
-# install haskell platform
-```
-apt-get upgrade
-apt-get update
-apt-get install haskell-platform
+$ stack --version
+Version 1.0.0 arm
 ```
 
-Now cabal 1.18 and ghc 7.6 are installed... but that sucks
+Notes:
+* Maybe need to run a registration image first:
+```
+$ docker run --rm --privileged multiarch/qemu-user-static:register
+```
 
-## NOTE
-Tylers-MacBook-Pro:rpi-haskell tyler$ docker run -it rpi-haskell /bin/bash
-root@3bce51761fcb:/opt/work# ls
-root@3bce51761fcb:/opt/work# ghc --version
-The Glorious Glasgow Haskell Compilation System, version 7.6.3
-root@3bce51761fcb:/opt/work# cabal --version
-cabal-install version 1.20.0.3
-using version 1.20.0.2 of the Cabal library
+* May want to make an rpi-haskell machine w/ better compute than default
+  * TODO: test/research to see if this really works
+```
+$ docker-machine create \
+  -d virtualbbox \
+  --virtualbox-cpu-count "4"
+  --virtualbox-disk-size "409600" # 400gb
+  --virtualbox-memory "8192" # 8gb
+```
 
-
-# get newest cabal source
-
-https://www.haskell.org/cabal/release/cabal-1.22.8.0/Cabal-1.22.8.0.tar.gz
-And we already have cabal, so `cd Cabal-1.22.8.0 && cabal install`
-
-# Next theoretical steps...
-# Get stack source
-
-https://github.com/commercialhaskell/stack.git
-
-`cd stack && cabal install`
-
-
-stack setup with bindist??
-http://downloads.haskell.org/~ghc/7.10.2/ghc-7.10.2-arm-unknown-linux.tar.xz
-
-
-
-###### TODO
-run rpi-haskell machine
-remove cabal dir after compile
-compile with optimizations
-
-
-
-##############
-
-In-place registering Cabal-1.22.8.0...
-Creating package registration file: /tmp/pkgConf-Cabal-1.22.824.0
-Installing library in /root/.cabal/lib/arm-linux-ghc-7.6.3/Cabal-1.22.8.0
-Registering Cabal-1.22.8.0...
-Installed Cabal-1.22.8.0
+* May need to set `system-ghc: true` in stack.yaml

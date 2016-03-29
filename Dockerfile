@@ -1,20 +1,13 @@
 FROM resin/rpi-raspbian
 
-WORKDIR /opt/work
+RUN echo "deb http://archive.raspbian.org/raspbian stretch main" > /etc/apt/sources.list.d/scretch.list
 
-COPY scripts scripts
+RUN apt-get update
+RUN apt-get install ghc
+RUN apt-get install cabal-install
+RUN apt-get install haskell-stack
 
-RUN scripts/install-deps.sh
-RUN scripts/install-cabal.sh
-RUN scripts/install-ghc.sh
-ENV PATH=/usr/lib/haskell-arm/bin:$PATH
+# stack setup requires we have tcp protocol support
+RUN apt-get install netbase
 
-RUN scripts/install-stack.sh
-
-# can probably delete /root/.ghc and /root/.cabal now...
-
-# COPY stack stack
-# WORKDIR /opt/work/stack
-# RUN cabal install
-
-# NOTE: need to update cabal-install somewhere here... how do?
+RUN apt-get clean
