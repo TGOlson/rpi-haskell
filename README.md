@@ -1,6 +1,6 @@
 # rpi-haskell
 
-Haskell installation on top of `rpi-raspbian` base image.
+Haskell installation on top of `rpi-raspbian` base image. Suitable for running or compiling Haskell code for arm devices - such as the raspberry pi.
 
 #### Versions
 
