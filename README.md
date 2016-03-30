@@ -2,6 +2,10 @@
 
 Haskell installation on top of `rpi-raspbian` base image. Suitable for running or compiling Haskell code for arm devices - such as the raspberry pi.
 
+#### Build Details
+- [Source Repository](https://github.com/tgolson/rpi-haskell)
+- [DockerHub](https://hub.docker.com/r/tgolson/rpi-haskell/)
+
 #### Versions
 
 ```
@@ -22,7 +26,7 @@ Version 1.0.0 arm
 
 #### Notes
 
-* You may need to run a registration image before using `rpi-haskell`:
+* To run this on an architecture other than ARM, you will need to run a registration image first:
 ```
 $ docker run --rm --privileged multiarch/qemu-user-static:register --reset
 ```
