@@ -8,6 +8,6 @@ RUN apt-get install cabal-install
 RUN apt-get install haskell-stack
 
 # stack setup requires we have tcp protocol support
-RUN apt-get install netbase
+RUN apt-get install netbase ca-certificates
 
 RUN apt-get clean
