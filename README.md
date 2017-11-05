@@ -1,6 +1,6 @@
 # rpi-haskell
 
-Haskell installation on top of `rpi-raspbian` base image. Suitable for running or compiling Haskell code for arm devices - such as the raspberry pi.
+Haskell installation on top of `rpi-raspbian` base image. Suitable for running or compiling Haskell code for arm devices - such as a Raspberry Pi.
 
 #### Build Details
 - [Source Repository](https://github.com/tgolson/rpi-haskell)
@@ -8,21 +8,7 @@ Haskell installation on top of `rpi-raspbian` base image. Suitable for running o
 
 #### Versions
 
-```
-$ ghc --version
-The Glorious Glasgow Haskell Compilation System, version 7.10.3
-```
-
-```
-$ cabal --version
-cabal-install version 1.22.6.0
-using version 1.22.5.0 of the Cabal library
-```
-
-```
-$ stack --version
-Version 1.0.0 arm
-```
+See [tags](https://hub.docker.com/r/tgolson/rpi-haskell/tags/) for available versions. Version tag refers to GHC version.
 
 #### Notes
 
@@ -30,3 +16,4 @@ Version 1.0.0 arm
 ```
 $ docker run --rm --privileged multiarch/qemu-user-static:register --reset
 ```
+

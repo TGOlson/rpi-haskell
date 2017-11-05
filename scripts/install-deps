@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -e
+
+echo "deb http://archive.raspbian.org/raspbian stretch main" > /etc/apt/sources.list.d/scretch.list
+
+sudo apt-get update
+sudo apt-get install ghc cabal-install haskell-stack
+sudo apt-get install netbase ca-certificates
+
+sudo apt-get clean
